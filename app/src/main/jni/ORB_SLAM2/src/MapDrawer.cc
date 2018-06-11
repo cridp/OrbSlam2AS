@@ -255,7 +255,7 @@ namespace ORB_SLAM2 {
         glDrawArrays(GL_LINES, 0, 16);
         glPopMatrix();
         glFlush();
-        DrawKeyFrames(false,true);
+        DrawKeyFrames(true,true);
         DrawMapPoints();
         // glDisableClientState (GL_VERTEX_ARRAY);
         // glDisable (GL_COLOR_MATERIAL);

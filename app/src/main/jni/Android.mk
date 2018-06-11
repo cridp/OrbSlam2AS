@@ -1,7 +1,7 @@
 LOCAL_PATH:= $(call my-dir)
 APP_ALLOW_MISSING_DEPS :=true
 NDK_LIBS_OUT :=../jniLibs/armeabi-v7a
-#############DLib模块##################
+#############DLib模块# #################
 
 include $(CLEAR_VARS)
 MAINDIR:= $(LOCAL_PATH)

@@ -1,0 +1,65 @@
+{
+  "buildFiles": [
+    "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "clapack-debug-armeabi": {
+      "artifactName": "clapack",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libclapack.a",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libclapack.a"
+    },
+    "g2o-debug-armeabi": {
+      "artifactName": "g2o",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libg2o.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libg2o.so"
+    },
+    "lapack-debug-armeabi": {
+      "artifactName": "lapack",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/liblapack.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\liblapack.so"
+    },
+    "DBoW2-debug-armeabi": {
+      "artifactName": "DBoW2",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libDBoW2.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libDBoW2.so"
+    },
+    "DLib-debug-armeabi": {
+      "artifactName": "DLib",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libDLib.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libDLib.so"
+    },
+    "f2c-debug-armeabi": {
+      "artifactName": "f2c",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libf2c.a",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libf2c.a"
+    },
+    "ORB_SLAM2_EXCUTOR-debug-armeabi": {
+      "artifactName": "ORB_SLAM2_EXCUTOR",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libORB_SLAM2_EXCUTOR.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libORB_SLAM2_EXCUTOR.so"
+    },
+    "blas-debug-armeabi": {
+      "artifactName": "blas",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libblas.a",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libblas.a"
+    },
+    "ORB_SLAM2-debug-armeabi": {
+      "artifactName": "ORB_SLAM2",
+      "buildCommand": "C:\\NVPACK\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dC:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/armeabi/libORB_SLAM2.so",
+      "abi": "armeabi",
+      "output": "C:\\Users\\yakki\\AndroidStudioProjects\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi\\libORB_SLAM2.so"
+    }
+  }
+}

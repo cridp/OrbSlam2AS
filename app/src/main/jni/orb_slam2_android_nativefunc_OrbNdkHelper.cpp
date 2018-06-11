@@ -74,17 +74,17 @@ JNIEXPORT jintArray JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelp
  */
 JNIEXPORT void JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_glesInit
 (JNIEnv *env, jclass cls) {
-	// 启用阴影平滑
+
 	glShadeModel(GL_SMOOTH);
-	// 黑色背景
+
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	// 设置深度缓存
+
 	glClearDepthf(1.0f);
-	// 启用深度测试
+
 	glEnable(GL_DEPTH_TEST);
-	// 所作深度测试的类型
+
 	glDepthFunc(GL_LEQUAL);
-	// 告诉系统对透视进行修正
+
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
 
@@ -98,6 +98,7 @@ JNIEXPORT void JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_gl
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode (GL_MODELVIEW);
 	glLoadIdentity ();
+	glScalef (1.0, -1.0, 1.0);
 	if(init_end)
 	s->drawGL();
 }
@@ -109,11 +110,11 @@ JNIEXPORT void JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_gl
  */
 JNIEXPORT void JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_glesResize
 (JNIEnv *env, jclass cls, jint width, jint height) {
-	//图形最终显示到屏幕的区域的位置、长和宽
+
 	glViewport (0,0,width,height);
-	//指定矩阵
+
 	glMatrixMode (GL_PROJECTION);
-	//将当前的矩阵设置为glMatrixMode指定的矩阵
+
 	glLoadIdentity ();
 	glOrthof(-2, 2, -2, 2, -2, 2);
 }
@@ -123,9 +124,9 @@ JNIEXPORT void JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_gl
  * Method:    readShaderFile
  * Signature: (Landroid/content/res/AssetManager;)V
  */
-JNIEXPORT jintArray JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelper_startCurrentORBForCamera
-(JNIEnv *env, jclass cls,jdouble timestamp, jlong addr,jint w,jint h) {
-	const cv::Mat *im = (cv::Mat *) addr;
+JNIEXPORT jfloatArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_startCurrentORBForCamera
+		(JNIEnv *env, jclass cls,jdouble timestamp, jlong addr,jint w,jint h) {
+/*	const cv::Mat *im = (cv::Mat *) addr;
 	cv::Mat ima = s->TrackMonocular(*im, timestamp);
 	jintArray resultArray = env->NewIntArray(ima.rows * ima.cols);
 	jint *resultPtr;
@@ -138,6 +139,40 @@ JNIEXPORT jintArray JNICALL Java_com_ntanougat_orbslam2test_NdkHelper_OrbNdkHelp
 		resultPtr[i * ima.cols + j] = 0xff000000 + (R << 16) + (G << 8) + B;
 	}
 	env->ReleaseIntArrayElements(resultArray, resultPtr, 0);
+	return resultArray;*/
+	const cv::Mat *im = (cv::Mat *) addr;
+	cv::Mat ima = s->TrackMonocular(*im, timestamp);
+	//maxiaoba
+	/*cv::Mat Rwc = Tcw.rowRange(0,3).colRange(0,3).t();
+ cv::Mat twc = -Rwc*Tcw.rowRange(0,3).col(3); //origin to camera in world frame
+ vector<float> q = Converter::toQuaternion(Rwc);
+ vector<float> rpy(3);
+ rpy[0] = atan2(2*(q[0]*q[1]+q[2]*q[3]),1-2*(q[1]*q[1]+q[2]*q[2]));
+ rpy[1] = asin(2*(q[0]*q[2]-q[3]*q[1]));
+ rpy[2] = atan2(2*(q[0]*q[3]+q[1]*q[2]),1-2*(q[2]*q[2]+q[3]*q[3]));
+ vector<float> p(3);
+ p[0] = twc.at <float> (0);
+ p[1] = twc.at <float> (1);
+ p[2] = twc.at <float> (2);*/
+	//maxiaoba
+	jfloatArray resultArray = env->NewFloatArray(ima.rows * ima.cols);
+	jfloat *resultPtr;
+	resultPtr = env->GetFloatArrayElements(resultArray, false);
+	for (int i = 0; i < ima.rows; i++)
+		for (int j = 0; j < ima.cols; j++) {
+
+			resultPtr[i * ima.cols + j] = ima.at <float> (i,j);
+		}
+	/*jfloatArray resultArray = env->NewFloatArray(6);
+    jfloat *resultPtr;
+   resultPtr = env->GetFloatArrayElements(resultArray, false);
+   resultPtr[0] = p[0];
+   resultPtr[1] = p[1];
+   resultPtr[2] = p[2];
+   resultPtr[3] = rpy[0];
+   resultPtr[4] = rpy[1];
+   resultPtr[5] = rpy[2];*/
+
+	env->ReleaseFloatArrayElements(resultArray, resultPtr, 0);
 	return resultArray;
 }
-

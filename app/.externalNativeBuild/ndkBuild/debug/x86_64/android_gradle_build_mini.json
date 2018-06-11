@@ -1,0 +1,65 @@
+{
+  "buildFiles": [
+    "D:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk",
+    "D:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "blas-debug-x86_64": {
+      "artifactName": "blas",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libblas.a",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libblas.a"
+    },
+    "ORB_SLAM2_EXCUTOR-debug-x86_64": {
+      "artifactName": "ORB_SLAM2_EXCUTOR",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libORB_SLAM2_EXCUTOR.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libORB_SLAM2_EXCUTOR.so"
+    },
+    "f2c-debug-x86_64": {
+      "artifactName": "f2c",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libf2c.a",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libf2c.a"
+    },
+    "DLib-debug-x86_64": {
+      "artifactName": "DLib",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libDLib.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libDLib.so"
+    },
+    "DBoW2-debug-x86_64": {
+      "artifactName": "DBoW2",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libDBoW2.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libDBoW2.so"
+    },
+    "g2o-debug-x86_64": {
+      "artifactName": "g2o",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libg2o.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libg2o.so"
+    },
+    "lapack-debug-x86_64": {
+      "artifactName": "lapack",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/liblapack.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\liblapack.so"
+    },
+    "ORB_SLAM2-debug-x86_64": {
+      "artifactName": "ORB_SLAM2",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libORB_SLAM2.so",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libORB_SLAM2.so"
+    },
+    "clapack-debug-x86_64": {
+      "artifactName": "clapack",
+      "buildCommand": "D:\\AndroidSDK\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-24 NDK_OUT\u003dD:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/Android/Project/OrbSlam2Test/app/build/intermediates/ndkBuild/debug/obj/local/x86_64/libclapack.a",
+      "abi": "x86_64",
+      "output": "D:\\Android\\Project\\OrbSlam2Test\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\x86_64\\libclapack.a"
+    }
+  }
+}

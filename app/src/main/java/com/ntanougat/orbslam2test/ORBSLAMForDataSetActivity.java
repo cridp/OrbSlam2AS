@@ -1,6 +1,7 @@
 package com.ntanougat.orbslam2test;
 
 import java.io.File;
+import java.util.Arrays;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -29,15 +30,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.TextView;
 
 
 public class ORBSLAMForDataSetActivity extends Activity implements OnClickListener,
 		Renderer {
 	ImageView imgSource, imgDealed;
+	TextView dataTextView;
 	Button start, stop;
 	String vocPath, calibrationPath, ImgPath;
 	LinearLayout linear;
-	
+	public double timestamp;
+	public double timestampOld;
+	public double timeStep;
+
 	private static final int INIT_FINISHED=0x00010001;
 
 	private AssetManager mAssetMgr = null;
@@ -58,6 +64,7 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_dataset_orb);
+		dataTextView = (TextView) findViewById(R.id.dataTextView);
 		imgSource = (ImageView) findViewById(R.id.img_origin);
 		imgDealed = (ImageView) findViewById(R.id.img_dealed);
 		start = (Button) findViewById(R.id.start);
@@ -70,6 +77,7 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 
 		mGLSurfaceView = new GLSurfaceView(this);
 		linear = (LinearLayout) findViewById(R.id.surfaceLinear);
+
 			//mGLSurfaceView.setEGLContextClientVersion(CONTEXT_CLIENT_VERSION);
 		mGLSurfaceView.setRenderer(this);
 		linear.addView(mGLSurfaceView, new LinearLayout.LayoutParams(
@@ -111,8 +119,10 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
         				public void run() {
         					if (!TextUtils.isEmpty(ImgPath)) {
         						File dir = new File(ImgPath);
+        						File[] files = dir.listFiles();
+        						Arrays.sort(files);
         						if (dir.isDirectory()) {
-        							for (File file : dir.listFiles()) {
+        							for (File file : files) {
         								tmp = BitmapFactory.decodeFile(file
         										.getAbsolutePath());
         								runOnUiThread(new Runnable() {
@@ -122,9 +132,11 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
         										imgSource.setImageBitmap(tmp);
         									}
         								});
+										timestampOld = timestamp;
         								timestamp = Double.parseDouble(file.getName()
         										.substring(0,
         												file.getName().length() - 5));
+										timeStep = timestamp-timestampOld;
         								// TODO Auto-generated method stub
         								int w = tmp.getWidth(), h = tmp.getHeight();
         								int[] pix = new int[w * h];
@@ -132,15 +144,15 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 
         								int[] resultInt = OrbNdkHelper.startCurrentORB(
         										timestamp, pix, w, h);
-        								resultImg = Bitmap.createBitmap(w, h,
-        										Config.RGB_565);
-        								resultImg
-        										.setPixels(resultInt, 0, w, 0, 0, w, h);
+        								resultImg = Bitmap.createBitmap(w, h, Config.RGB_565);
+        								resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
+
         								runOnUiThread(new Runnable() {
         									@Override
         									public void run() {
         										// TODO Auto-generated method stub
         										imgDealed.setImageBitmap(resultImg);
+												dataTextView.setText("Time Step: "+String.valueOf(timeStep)+"");
         									}
         								});
         							}
@@ -158,7 +170,7 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
    };
 
 	private Bitmap tmp, resultImg;
-	private double timestamp;
+	//private double timestamp;
 
 	@Override
 	public void onClick(View v) {
