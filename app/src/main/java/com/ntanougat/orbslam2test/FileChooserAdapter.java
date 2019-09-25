@@ -1,12 +1,12 @@
 package com.ntanougat.orbslam2test;
 
-import java.io.File;
 import java.util.ArrayList;
 
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
+
+import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +14,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 public class FileChooserAdapter extends BaseAdapter {
 
 	private ArrayList<FileInfo> mFileLists;
-	private LayoutInflater mLayoutInflater = null;
+	private LayoutInflater mLayoutInflater;
 
 	public FileChooserAdapter(Context context, ArrayList<FileInfo> fileLists) {
 		super();
 		mFileLists = fileLists;
-		mLayoutInflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
@@ -48,11 +46,10 @@ public class FileChooserAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		View view = null;
-		ViewHolder holder = null;
+		View view;
+		ViewHolder holder;
 		if (convertView == null || convertView.getTag() == null) {
-			view = mLayoutInflater.inflate(R.layout.filechooser_gridview_item,
-					null);
+			view = mLayoutInflater.inflate(R.layout.filechooser_gridview_item, null);
 			holder = new ViewHolder(view);
 			view.setTag(holder);
 		} else {
@@ -61,15 +58,14 @@ public class FileChooserAdapter extends BaseAdapter {
 		}
 
 		FileInfo fileInfo = getItem(position);
-        //TODO 
-		
+		//TODO
+
 		holder.tvFileName.setText(fileInfo.getFileName());
-		
-		if(fileInfo.isDirectory()){
+
+		if (fileInfo.isDirectory()) {
 			holder.imgFileIcon.setImageResource(R.drawable.ic_folder);
 			holder.tvFileName.setTextColor(Color.GRAY);
-		}
-		else {
+		} else {
 			holder.imgFileIcon.setImageResource(R.drawable.ic_file_unknown);
 			holder.tvFileName.setTextColor(Color.GRAY);
 		}
@@ -86,9 +82,8 @@ public class FileChooserAdapter extends BaseAdapter {
 		}
 	}
 
-	
 	enum FileType {
-		FILE , DIRECTORY;
+		FILE, DIRECTORY
 	}
 
 	// =========================
@@ -104,14 +99,11 @@ public class FileChooserAdapter extends BaseAdapter {
 			this.fileName = fileName;
 			fileType = isDirectory ? FileType.DIRECTORY : FileType.FILE;
 		}
-  
-		public boolean isDirectory(){
-			if(fileType == FileType.DIRECTORY)
-				return true ;
-			else
-				return false ;
+
+		public boolean isDirectory() {
+			return fileType == FileType.DIRECTORY;
 		}
-		
+
 		public String getFileName() {
 			return fileName;
 		}
@@ -129,10 +121,10 @@ public class FileChooserAdapter extends BaseAdapter {
 		}
 
 		@Override
+		@NonNull
 		public String toString() {
 			return "FileInfo [fileType=" + fileType + ", fileName=" + fileName
 					+ ", filePath=" + filePath + "]";
 		}
 	}
-
 }

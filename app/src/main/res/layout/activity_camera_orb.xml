@@ -25,7 +25,7 @@
                 android:id="@+id/tutorial1_activity_java_surface_view"
                 android:layout_width="200dip"
                 android:layout_height="200dip"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="15dip"
                 android:layout_marginTop="15dip"

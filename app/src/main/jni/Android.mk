@@ -1,7 +1,7 @@
 LOCAL_PATH:= $(call my-dir)
 APP_ALLOW_MISSING_DEPS :=true
-NDK_LIBS_OUT :=../jniLibs/armeabi-v7a
-#############DLib模块# #################
+#NDK_LIBS_OUT :=../jniLibs/armeabi-v7a
+##############DLibModule##################
 
 include $(CLEAR_VARS)
 MAINDIR:= $(LOCAL_PATH)
@@ -21,8 +21,8 @@ include $(BUILD_SHARED_LIBRARY)
 LOCAL_C_INCLUDES+=$(LOCAL_PATH)
 FILE_LIST:=$(wildcard $(LOCAL_PATH)/*.cpp)
 ######################################
-
-#############DLib模块##################
+OPENCV_MK_PATH := C:\Users\Pascal\AndroidstudioProjects\OpenCV-4.4.1-android-sdk\sdk\native\jni\OpenCV.mk
+#############DLibModule##################
 include $(CLEAR_VARS)
 MAIN_DIR:=$(LOCAL_PATH)
 OPENCV_LIB_TYPE:=STATIC
@@ -35,12 +35,12 @@ endif
 LOCAL_PATH:=$(MAIN_DIR)
 LOCAL_MODULE:=DLib
 
-####################源文件部分######################################
+####################Source file section######################################
 LOCAL_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/DBoW2/DLib/include/DUtils
 FILE_LIST:=$(wildcard $(LOCAL_PATH)/Thirdparty/DBoW2/DLib/src/DUtils/*.cpp)
 LOCAL_SRC_FILES+=$(FILE_LIST:$(LOCAL_PATH)/%=%)
 
-################BOOST#####################部分
+################BOOST#####################part
 BOOST_VERSION      := 1_49
 PROJECT_ROOT       := $(LOCAL_PATH)
 BOOST_INCLUDE_PATH := $(PROJECT_ROOT)/Thirdparty/Boost/include/boost-1_49
@@ -50,19 +50,19 @@ LOCAL_LDLIBS    := -llog
 # The order of these libraries is often important.
 LOCAL_LDLIBS += -L$(BOOST_LIB_PATH)     
 LOCAL_LDLIBS    +=-lz -llog -landroid -lEGL -lGLESv1_CM
-LOCAL_CPPFLAGS := -std=c++11 -pthread -frtti -fexceptions
+LOCAL_CPPFLAGS := -std=c++14 -pthread -frtti -fexceptions
 LOCAL_CPPFLAGS += -D__cplusplus=201103L
 
 #LOCAL_EXPORT_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/DBoW2/DLib/include/DUtils
 #LOCAL_EXPORT_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/DBoW2/DLib/include/DUtilsCV
 LOCAL_EXPORT_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/DBoW2/DLib/include
 LOCAL_EXPORT_C_INCLUDES+=$(BOOST_INCLUDE_PATH)
-LOCAL_EXPORT_C_INCLUDES+=C:/opencv-3.3.0-android-sdk/OpenCV-android-sdk/sdk/native/jni/include
+LOCAL_EXPORT_C_INCLUDES+=$(OPENCV_MK_PATH) #C:/opencv-3.3.0-android-sdk/OpenCV-android-sdk/sdk/native/jni/include
 LOCAL_PATH:=$(MAIN_DIR)
 include $(BUILD_SHARED_LIBRARY)
 ###############################################################
 
-##############DBoW2模块#########################################
+##############DBoW2 module#########################################
 include $(CLEAR_VARS)
 MAIN_DIR:=$(LOCAL_PATH)
 
@@ -81,14 +81,14 @@ FILE_LIST:=$(wildcard $(LOCAL_PATH)/Thirdparty/DBoW2/src/*.cpp)
 LOCAL_SRC_FILES+=$(FILE_LIST:$(LOCAL_PATH)/%=%)
 LOCAL_SHARED_LIBRARIES+=DLib
 LOCAL_EXPORT_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/DBoW2/include
-LOCAL_CPPFLAGS := -std=c++11 -pthread -frtti -fexceptions
+LOCAL_CPPFLAGS := -std=c++14 -pthread -frtti -fexceptions
 LOCAL_CPPFLAGS += -D__cplusplus=201103L
 LOCAL_PATH:=$(MAIN_DIR)
 include $(BUILD_SHARED_LIBRARY)
 ###############################################################
 
 
-###################G2O模块##################################
+###################G2O module##################################
 include $(CLEAR_VARS)
 MAIN_DIR:=$(LOCAL_PATH)
 LOCAL_C_INCLUDES+=$(LOCAL_PATH)/Thirdparty/g2o/g2o/core
@@ -118,7 +118,7 @@ LOCAL_PATH:=$(MAIN_DIR)
 include $(BUILD_SHARED_LIBRARY)
 ############################################################
 
-##############ORB_SLAM2模块##################################
+##############ORB_SLAM2 module##################################
 include $(CLEAR_VARS)
 MAIN_DIR:=$(LOCAL_PATH)
 OPENCV_LIB_TYPE:=STATIC
@@ -146,7 +146,7 @@ LOCAL_PATH:=$(MAIN_DIR)
 include $(BUILD_SHARED_LIBRARY)
 ############################################################
 
-##############ORB_SLAM2 執行模块###############################
+##############ORB_SLAM2 Execution module###############################
 include $(CLEAR_VARS)
 MAIN_DIR:=$(LOCAL_PATH)
 OPENCV_LIB_TYPE:=STATIC

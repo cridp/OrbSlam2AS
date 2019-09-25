@@ -1,13 +1,5 @@
 package com.ntanougat.orbslam2test;
 
-import java.io.File;
-import java.util.Arrays;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-import com.ntanougat.orbslam2test.NdkHelper.OrbNdkHelper;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
@@ -29,11 +21,20 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ORBSLAMForDataSetActivity extends Activity implements OnClickListener,
+import com.ntanougat.orbslam2test.ndkHelper.OrbNdkHelper;
+
+import java.io.File;
+import java.util.Arrays;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+public class ORBSLAMForDataSetActivity extends AppCompatActivity implements OnClickListener,
 		Renderer {
 	ImageView imgSource, imgDealed;
 	TextView dataTextView;
@@ -44,7 +45,7 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 	public double timestampOld;
 	public double timeStep;
 
-	private static final int INIT_FINISHED=0x00010001;
+	private static final int INIT_FINISHED = 0x00010001;
 
 	private AssetManager mAssetMgr = null;
 
@@ -78,14 +79,14 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 		mGLSurfaceView = new GLSurfaceView(this);
 		linear = (LinearLayout) findViewById(R.id.surfaceLinear);
 
-			//mGLSurfaceView.setEGLContextClientVersion(CONTEXT_CLIENT_VERSION);
+		//mGLSurfaceView.setEGLContextClientVersion(CONTEXT_CLIENT_VERSION);
 		mGLSurfaceView.setRenderer(this);
 		linear.addView(mGLSurfaceView, new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT));
 		if (TextUtils.isEmpty(vocPath) || TextUtils.isEmpty(calibrationPath)) {
 			Toast.makeText(this, "null param,return!", Toast.LENGTH_LONG)
-					.show();
+				 .show();
 			finish();
 		} else {
 			Toast.makeText(ORBSLAMForDataSetActivity.this, "init has been started!",
@@ -97,77 +98,76 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 					// TODO Auto-generated method stub
 					OrbNdkHelper.initSystemWithParameters(vocPath,
 							calibrationPath);
-							Log.e("information==========>",
-									"init has been finished!");
-							myHandler.sendEmptyMessage(INIT_FINISHED);
+					Log.e("information==========>",
+							"init has been finished!");
+					myHandler.sendEmptyMessage(INIT_FINISHED);
 				}
 			}).start();
 		}
-
 	}
-	
-	Handler myHandler = new Handler() {  
-        public void handleMessage(Message msg) {   
-             switch (msg.what) {   
-                  case INIT_FINISHED:   
-                	  Toast.makeText(ORBSLAMForDataSetActivity.this,
-								"init has been finished!",
-								Toast.LENGTH_LONG).show();
-          			new Thread(new Runnable() {
 
-        				@Override
-        				public void run() {
-        					if (!TextUtils.isEmpty(ImgPath)) {
-        						File dir = new File(ImgPath);
-        						File[] files = dir.listFiles();
-        						Arrays.sort(files);
-        						if (dir.isDirectory()) {
-        							for (File file : files) {
-        								tmp = BitmapFactory.decodeFile(file
-        										.getAbsolutePath());
-        								runOnUiThread(new Runnable() {
-        									@Override
-        									public void run() {
-        										// TODO Auto-generated method stub
-        										imgSource.setImageBitmap(tmp);
-        									}
-        								});
+	Handler myHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+				case INIT_FINISHED:
+					Toast.makeText(ORBSLAMForDataSetActivity.this,
+							"init has been finished!",
+							Toast.LENGTH_LONG).show();
+					new Thread(new Runnable() {
+
+						@Override
+						public void run() {
+							if (!TextUtils.isEmpty(ImgPath)) {
+								File dir = new File(ImgPath);
+								File[] files = dir.listFiles();
+								Arrays.sort(files);
+								if (dir.isDirectory()) {
+									for (File file : files) {
+										tmp = BitmapFactory.decodeFile(file
+												.getAbsolutePath());
+										runOnUiThread(new Runnable() {
+											@Override
+											public void run() {
+												// TODO Auto-generated method stub
+												imgSource.setImageBitmap(tmp);
+											}
+										});
 										timestampOld = timestamp;
-        								timestamp = Double.parseDouble(file.getName()
-        										.substring(0,
-        												file.getName().length() - 5));
-										timeStep = timestamp-timestampOld;
-        								// TODO Auto-generated method stub
-        								int w = tmp.getWidth(), h = tmp.getHeight();
-        								int[] pix = new int[w * h];
-        								tmp.getPixels(pix, 0, w, 0, 0, w, h);
+										timestamp = Double.parseDouble(file.getName()
+																		   .substring(0,
+																				   file.getName().length() - 5));
+										timeStep = timestamp - timestampOld;
+										// TODO Auto-generated method stub
+										int w = tmp.getWidth(), h = tmp.getHeight();
+										int[] pix = new int[w * h];
+										tmp.getPixels(pix, 0, w, 0, 0, w, h);
 
-        								int[] resultInt = OrbNdkHelper.startCurrentORB(
-        										timestamp, pix, w, h);
-        								resultImg = Bitmap.createBitmap(w, h, Config.RGB_565);
-        								resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
+										int[] resultInt = OrbNdkHelper.startCurrentORB(
+												timestamp, pix, w, h);
+										resultImg = Bitmap.createBitmap(w, h, Config.RGB_565);
+										resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
 
-        								runOnUiThread(new Runnable() {
-        									@Override
-        									public void run() {
-        										// TODO Auto-generated method stub
-        										imgDealed.setImageBitmap(resultImg);
-												dataTextView.setText("Time Step: "+String.valueOf(timeStep)+"");
-        									}
-        								});
-        							}
-        						}
-        					} else {
-        						Toast.makeText(ORBSLAMForDataSetActivity.this, "empty images",
-        								Toast.LENGTH_LONG).show();
-        					}
-        				}
-        			}).start();
-                       break;   
-             }   
-             super.handleMessage(msg);   
-        }   
-   };
+										runOnUiThread(new Runnable() {
+											@Override
+											public void run() {
+												// TODO Auto-generated method stub
+												imgDealed.setImageBitmap(resultImg);
+												dataTextView.setText("Time Step: " + timeStep + "");
+											}
+										});
+									}
+								}
+							} else {
+								Toast.makeText(ORBSLAMForDataSetActivity.this, "empty images",
+										Toast.LENGTH_LONG).show();
+							}
+						}
+					}).start();
+					break;
+			}
+			super.handleMessage(msg);
+		}
+	};
 
 	private Bitmap tmp, resultImg;
 	//private double timestamp;
@@ -176,10 +176,9 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.start:
-			break;
-		case R.id.stop:
-			break;
+			case R.id.start:
+			case R.id.stop:
+				break;
 		}
 	}
 

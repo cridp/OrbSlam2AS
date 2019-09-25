@@ -1,25 +1,49 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "com.ntanougat.orbslam2test"
-        minSdkVersion 24
-        targetSdkVersion 25
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk{
-            //moduleName "app"
-            abiFilters "armeabi-v7a","armeabi"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // This block is different from the one you use to link Gradle
+        // to your CMake or ndk-build script.
+        externalNativeBuild {
+            // For ndk-build, instead use the ndkBuild block.
+            cmake {
+                // Passes optional arguments to CMake.
+ //               arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+                // Sets optional flags for the C compiler.
+ //               cFlags "-fexceptions", "-frtti"
+                // Sets a flag to enable format macro constants for the C++ compiler.
+ //               cppFlags "-D__STDC_FORMAT_MACROS"
+                //sample cpp flag parameters
+                cppFlags "-std=c++14 -Ofast -Rpass-analysis=loop-vectorize -fsave-optimization-record "
+                       // "-fdiagnostics-show-hotness"
+                //sample abi filter parameters
+                abiFilters 'arm64-v8a', 'armeabi-v7a'//, 'x86', 'x86_64'
+                //set -DANDROID_STL to c++_shared
+                arguments "-DANDROID_STL=c++_static"
+            }
 
-            cFlags+=("-std=c++11")
-            cFlags+=("-fexceptions")
-            cFlags+=("-I${file("C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include")}".toString())
-            cFlags+=("-I${file("C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include/opencv")}".toString())
-            stl = "gnustl_shared"
+            ndk {
+                // Specifies the ABI configurations of your native
+                // libraries Gradle should build and package with your APK.
 
+                //moduleName "app"
+                abiFilters "arm64-v8a", "armeabi-v7a"//, "x86", "x86_64"//, "armeabi"
+
+//            cFlags+=("-std=c++11")
+//            cFlags+=("-fexceptions")
+//            cFlags+=("-I${file("C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include")}".toString())
+//            cFlags+=("-I${file("C:/Users/yakki/AndroidStudioProjects/OrbSlam2Test/app/src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include/opencv")}".toString())
+//            stl = "gnustl_shared"
+                stl = "c++_static"
+            }
         }
     }
 
@@ -27,41 +51,58 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            jniDebuggable = true
+        }
+        debug {
+            jniDebuggable = true
+            debuggable = true
+            multiDexEnabled = true
         }
     }
     sourceSets {
         main {
-            jni.srcDirs = ['src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include','src/main/jni/Thirdparty/g2o/g2o',\
-                           'src/main/jni/ORB_SLAM2/include','src/main/jni/Thirdparty/DBoW2/DLib/include/DUtils',\
-            'src/main/jni/Thirdparty/DBoW2/DLib/include','src/main/jni/Thirdparty/DBoW2/include/DBoW2',\
-            'src/main/jni/Thirdparty/DBoW2/include','src/main/jni/Thirdparty/eigen3']
-
+//            jni.srcDirs = ['src/main/jni/Thirdparty/OpenCV-android-sdk/sdk/native/jni/include', 'src/main/jni/Thirdparty/g2o/g2o',  \
+//                             'src/main/jni/ORB_SLAM2/include', 'src/main/jni/Thirdparty/DBoW2/DLib/include/DUtils',  \
+//              'src/main/jni/Thirdparty/DBoW2/DLib/include', 'src/main/jni/Thirdparty/DBoW2/include/DBoW2',  \
+//              'src/main/jni/Thirdparty/DBoW2/include', 'src/main/jni/Thirdparty/eigen3']
+//            jni.srcDirs = ['C:/Users/Pascal/AndroidstudioProjects/OpenCV-3.4.1-android-sdk/sdk/native/jni/include']
+            jni.srcDirs = []
         }
     }
     tasks.withType(JavaCompile) {
-        compileTask -> compileTask.dependsOn  'copyJniLibs'
+        compileTask -> compileTask.dependsOn 'copyJniLibs'
     }
     task copyJniLibs(type: Copy) {
-        from fileTree(dir: file( 'build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs'), include: '*.so')
-        into file('src/main/jniLibs')
+        //"arm64-v8a", "armeabi-v7a"
+        from fileTree(dir: file('build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/objs'), include: '*.so')
+        into file('src/main/jniLibs/arm64-v8a')
+        from fileTree(dir: file('build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs'), include: '*.so')
+        into file('src/main/jniLibs/armeabi-v7a')
     }
 
     externalNativeBuild {
         ndkBuild {
-            path 'src/main/jni/Android.mk'
+//            path 'src/main/jni/Android.mk'
         }
-
-
+        cmake {
+            path file('CMakeLists.txt')
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile project(':openCVLibrary330')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+//    testCompile 'junit:junit:4.12'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    api 'org.opencv:opencv-android:3.4.1'
 }

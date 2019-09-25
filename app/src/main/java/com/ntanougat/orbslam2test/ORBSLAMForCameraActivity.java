@@ -1,17 +1,5 @@
 package com.ntanougat.orbslam2test;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Mat;
-
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.opengl.GLSurfaceView;
@@ -30,45 +18,56 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.ntanougat.orbslam2test.NdkHelper.OrbNdkHelper;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.ntanougat.orbslam2test.ndkHelper.OrbNdkHelper;
 
-public class ORBSLAMForCameraActivity extends Activity implements
-		Renderer,CvCameraViewListener2   {
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Mat;
 
-	private static final String TAG = "OCVSample::Activity";
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+public class ORBSLAMForCameraActivity extends AppCompatActivity implements Renderer, CvCameraViewListener2 {
+
+	private static final String TAG = ORBSLAMForCameraActivity.class.getSimpleName();
 	ImageView imgDealed;
 
 	LinearLayout linear;
 
 	String vocPath, calibrationPath;
 
-	private static final int INIT_FINISHED=0x00010001;
+	private static final int INIT_FINISHED = 0x00010001;
 
 	private CameraBridgeViewBase mOpenCvCameraView;
-	private boolean              mIsJavaCamera = true;
-	private MenuItem             mItemSwitchCamera = null;
+	private boolean mIsJavaCamera = true;
+	private MenuItem mItemSwitchCamera = null;
 
 	private final int CONTEXT_CLIENT_VERSION = 3;
 	private GLSurfaceView mGLSurfaceView;
 
 	long addr;
-	int w,h;
-	boolean isSLAMRunning=true;
+	int w, h;
+	boolean isSLAMRunning = true;
 
 	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 		@Override
 		public void onManagerConnected(int status) {
 			switch (status) {
-				case LoaderCallbackInterface.SUCCESS:
-				{
+				case LoaderCallbackInterface.SUCCESS: {
 					Log.i(TAG, "OpenCV loaded successfully");
 					mOpenCvCameraView.enableView();
-				} break;
-				default:
-				{
+				}
+				break;
+				default: {
 					super.onManagerConnected(status);
-				} break;
+				}
+				break;
 			}
 		}
 	};
@@ -109,7 +108,7 @@ public class ORBSLAMForCameraActivity extends Activity implements
 		calibrationPath = getIntent().getStringExtra("calibration");
 		if (TextUtils.isEmpty(vocPath) || TextUtils.isEmpty(calibrationPath)) {
 			Toast.makeText(this, "null param,return!", Toast.LENGTH_LONG)
-					.show();
+				 .show();
 			finish();
 		} else {
 			Toast.makeText(ORBSLAMForCameraActivity.this, "init has been started!",
@@ -140,8 +139,8 @@ public class ORBSLAMForCameraActivity extends Activity implements
 
 						@Override
 						public void run() {
-							while(isSLAMRunning){
-								timestamp = (double)System.currentTimeMillis()/1000.0;
+							while (isSLAMRunning) {
+								timestamp = (double) System.currentTimeMillis() / 1000.0;
 								// TODO Auto-generated method stub
 								int[] resultInt = OrbNdkHelper.startCurrentORBForCamera(timestamp, addr, w, h);
 								resultImg = Bitmap.createBitmap(w, h,
@@ -194,8 +193,6 @@ public class ORBSLAMForCameraActivity extends Activity implements
 		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);
 	}
 
-
-
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -217,6 +214,7 @@ public class ORBSLAMForCameraActivity extends Activity implements
 		if (mOpenCvCameraView != null)
 			mOpenCvCameraView.disableView();
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		Log.i(TAG, "called onCreateOptionsMenu");
@@ -226,11 +224,11 @@ public class ORBSLAMForCameraActivity extends Activity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String toastMesage = new String();
+		String toastMessage = "";
 		Log.i(TAG, "called onOptionsItemSelected; selected item: " + item);
 
 		if (item == mItemSwitchCamera) {
-			isSLAMRunning=false;
+			isSLAMRunning = false;
 //	            mOpenCvCameraView.setVisibility(SurfaceView.GONE);
 //	            mIsJavaCamera = !mIsJavaCamera;
 //
@@ -259,13 +257,13 @@ public class ORBSLAMForCameraActivity extends Activity implements
 	}
 
 	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-		Mat im=inputFrame.rgba();
+		Mat im = inputFrame.rgba();
 		synchronized (im) {
-			addr=im.getNativeObjAddr();
+			addr = im.getNativeObjAddr();
 		}
 
-		w=im.cols();
-		h=im.rows();
+		w = im.cols();
+		h = im.rows();
 		return inputFrame.rgba();
 	}
 }

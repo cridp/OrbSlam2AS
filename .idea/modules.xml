@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OrbSlam2Test.iml" filepath="$PROJECT_DIR$/OrbSlam2Test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/openCVLibrary330/openCVLibrary330.iml" filepath="$PROJECT_DIR$/openCVLibrary330/openCVLibrary330.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrbSlam2AS.iml" filepath="$PROJECT_DIR$/OrbSlam2AS.iml" group="OrbSlam2AS" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="OrbSlam2AS/app" />
     </modules>
   </component>
 </project>

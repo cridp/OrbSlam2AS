@@ -14,10 +14,12 @@
 #include <string>
 #include <sstream>
 #include <stdio.h>
+#include <opencv2/core.hpp>
 
 #include "FORB.h"
 
 using namespace std;
+
 
 namespace DBoW2 {
 
